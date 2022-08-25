@@ -1,13 +1,30 @@
-import re
 import check_links
 
-with open('data/CS100 Topic 1 Study Guide Summer Term 2022-23-final.txt', 'r', encoding='utf-8') as f:
-    s = f.read()
 
-s = s.replace("\n", " ")
+path = "data/TH300 Topic 2 Study Guide Spring Term 2022-23-incomplete.docx"
 
-urls = re.findall("http[s]?:\/\/[^\s]+[^. ]", s)
-# print(', '.join(urls))
+import use_docx2python
+s = use_docx2python.get_text_by_docx2python(path)
+
+
+from urlextract import URLExtract
+urlextracter = URLExtract()
+urls = urlextracter.gen_urls(s)
+
+
+import re
+def formaturl(url):
+    if not re.match('(?:http|ftp|https)://', url):
+        return 'http://{}'.format(url)
+    return url
+
+urls = [formaturl(url) for url in urls]
+
+
+urls = list(set(urls))
+
+
+print(', '.join(urls))
 
 for url in urls:
     print(check_links.check_link(url))
