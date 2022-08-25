@@ -2,10 +2,14 @@ import requests
 from urllib import parse
 
 
+global_counter = 1
+
 
 def check_link(url):
+    global global_counter
 
-    print(f"checking {url}")
+    print(f"{global_counter}: checking {url}")
+    global_counter += 1
 
     # Try and see if url have inherit problem
     try:
