@@ -21,9 +21,24 @@ def formaturl(url):
 
 
 urls = [formaturl(url) for url in urls]
-urls = list(set(urls))
+urls = sorted(list(set(urls)))
 
 # print(', '.join(urls))
+WELCOME_TEXT = """
+Welcome to the link extractor
+
+This program tests the links and see if the response code is 200, if not, the program reports the links.
+
+This program may be inaccurate because of the following two reasons:
+
+False positive:
+1. Links may return 200 code, but the actually content is wrong
+
+False negative:
+1. Links may not return 200 code, maybe it is 300 code for you were redirected, but it might be the correct place
+"""
+print(WELCOME_TEXT)
+print(f"We are checking {path}\n")
 
 for url in urls:
     is_valid = check_links.check_link(url)
