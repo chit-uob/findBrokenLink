@@ -48,6 +48,7 @@ async def download_site(session, url):
 
 
 async def download_all_sites(sites):
+    # print("entered async")
     site_dict = {}
     async with aiohttp.ClientSession() as session:
         tasks = []
@@ -73,20 +74,21 @@ async def download_all_sites(sites):
             print(f"the program thinks the link is NOT VALID, because of {reason}")
 
 
-
-if __name__ == "__main__":
-
+def main():
     print(WELCOME_TEXT)
     print(f"We are checking {path}\n")
-
     s = use_docx2python.get_text_by_docx2python(path)
     extractor = URLExtract()
     urls = extractor.gen_urls(s)
     urls = [formaturl(url) for url in urls]
     sites = sorted(list(set(urls)))
-
     print("Progress")
     start_time = time.time()
+    # print('before async')
     asyncio.get_event_loop().run_until_complete(download_all_sites(sites))
     duration = time.time() - start_time
     print(f"\nChecked {len(sites)} links in {duration} seconds")
+
+
+if __name__ == "__main__":
+    main()

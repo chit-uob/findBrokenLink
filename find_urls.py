@@ -2,7 +2,7 @@ import time
 
 import check_links
 
-path = "data/WP200 Topic 2 Study Guide Spring Term 2022-23-incomplete.docx"
+path = "C:/Users/User/Desktop/CS100 Topic 1 Study Guide Summer Term 2022-23-final.docx"
 
 import use_docx2python
 
