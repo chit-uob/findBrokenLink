@@ -1,0 +1,7 @@
+textract==1.6.5
+docx==0.2.4
+docx2python==2.0.4
+aiohttp==3.8.1
+requests==2.25.1
+docx2txt==0.8
+urlextract==1.6.0
