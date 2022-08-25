@@ -1,6 +1,8 @@
+import time
+
 import check_links
 
-path = "data/TH300 Topic 2 Study Guide Spring Term 2022-23-incomplete.docx"
+path = "data/WP200 Topic 2 Study Guide Spring Term 2022-23-incomplete.docx"
 
 import use_docx2python
 
@@ -23,7 +25,7 @@ def formaturl(url):
 urls = [formaturl(url) for url in urls]
 urls = sorted(list(set(urls)))
 
-# print(', '.join(urls))
+
 WELCOME_TEXT = """
 Welcome to the link extractor
 
@@ -39,6 +41,7 @@ False negative:
 """
 print(WELCOME_TEXT)
 print(f"We are checking {path}\n")
+start_time = time.time()
 
 for url in urls:
     is_valid = check_links.check_link(url)
@@ -46,3 +49,6 @@ for url in urls:
         print("the above link should be valid")
     else:
         print("the program thinks the link is NOT VALID!")
+
+duration = time.time() - start_time
+print(f"\nChecked {len(urls)} links in {duration} seconds")
